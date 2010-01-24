@@ -5,6 +5,7 @@ module Nekohtml
   def Nekohtml.parse(string)
     if string
       jparser = org.cyberneko.html.parsers.DOMParser.new
+      jparser.setFeature("http://xml.org/sax/features/namespaces", false)
 
       jinput_reader = java.io.StringReader.new(string.to_java_string)
       jinput_source = org.xml.sax.InputSource.new(jinput_reader)

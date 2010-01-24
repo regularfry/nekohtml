@@ -40,5 +40,24 @@ class TestNekohtml < Test::Unit::TestCase
     assert_equal 2, search_results.length
     assert_equal ["Foo", "Bar"], search_results.map{|r| r.text}
   end
+  
+  def test_html_with_namespaces
+    content = <<-HTML
+      <?xml version="1.0" encoding="UTF-8"?>
+      <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+      <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+        <head></head>
+      </html>
+    HTML
+
+    root_node = Nekohtml.parse(content)
+    assert_not_nil root_node
+
+    xpath = "//HEAD"
+    search_results = root_node.search(xpath)
+
+    assert_equal 1, search_results.length
+  end
+
 
 end
