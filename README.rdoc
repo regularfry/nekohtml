@@ -1,6 +1,10 @@
 = nekohtml
 
-Description goes here.
+A thin wrapper around NekoHTML as provided by Celerity.
+
+At the moment this gem depends on Celerity to provide the nekohtml jar.
+Once I can figure out how to make this optional, I'll provide it here if 
+the celerity gem isn't here at install time.
 
 == Note on Patches/Pull Requests
  
@@ -9,7 +13,8 @@ Description goes here.
 * Add tests for it. This is important so I don't break it in a
   future version unintentionally.
 * Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+  (if you want to have your own version, that is fine but bump version in a
+  commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
 == Copyright
