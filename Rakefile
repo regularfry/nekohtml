@@ -5,8 +5,8 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name = "nekohtml"
-    gem.summary = %Q{TODO: one-line summary of your gem}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.summary = %Q{Thin wrapper around the NekoHTML parser}
+    gem.description = %Q{Almost the briefest possible wrapper around the NekoHTML parser to provide xpath functionality.}
     gem.email = "alex@blackkettle.org"
     gem.homepage = "http://github.com/regularfry/nekohtml"
     gem.authors = ["Alex Young"]
