@@ -11,13 +11,13 @@ the celerity gem isn't here at install time.
     jruby-1.4.0 > require 'nekohtml'
      => true 
     jruby-1.4.0 > html= "<html><head><title>Title of Majesty</title></head></html>" 
-     => "<html><head><title>Title of Wonder and Majesty</title></head></html>" 
+     => "<html><head><title>Title of Majesty</title></head></html>" 
     jruby-1.4.0 > doc= Nekohtml.parse(html)
      => #<Nekohtml::HtmlDocument:0x3f70119f ... >
     jruby-1.4.0 > doc.search("//TITLE")
      => #<Nekohtml::HtmlNodeList:0x1a7b5617 ... >
     jruby-1.4.0 > _.first.text
-     => "Title of Wonder and Majesty" 
+     => "Title of Majesty" 
 
 
 == Note on Patches/Pull Requests
