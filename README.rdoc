@@ -19,6 +19,9 @@ the celerity gem isn't here at install time.
     jruby-1.4.0 > _.first.text
      => "Title of Majesty" 
 
+Note that the xpath must use all-caps for tag names. This is a limitation
+of NekoHTML; I may plunder Celerity's source to see how they/HtmlUnit handle
+it but for now, that's what you've got.
 
 == Note on Patches/Pull Requests
  
