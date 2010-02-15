@@ -11,8 +11,9 @@ begin
     gem.homepage = "http://github.com/regularfry/nekohtml"
     gem.authors = ["Alex Young"]
     gem.add_dependency "celerity", ">=0"
-    gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
-    gem.add_development_dependency "yard", ">= 0"
+    gem.add_development_dependency "mocha", ">=0"
+    #gem.add_development_dependency "thoughtbot-shoulda", ">= 0"
+    #gem.add_development_dependency "yard", ">= 0"
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
   Jeweler::GemcutterTasks.new
