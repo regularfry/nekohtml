@@ -33,7 +33,7 @@ class TestNekohtml < Test::Unit::TestCase
     root_node = Nekohtml.parse(content)
     flunk "Bad root node" if root_node.nil?
 
-    xpath = "//LI"
+    xpath = "//li"
 
     search_results = root_node.search(xpath)
 
@@ -53,11 +53,19 @@ class TestNekohtml < Test::Unit::TestCase
     root_node = Nekohtml.parse(content)
     assert_not_nil root_node
 
-    xpath = "//HEAD"
+    xpath = "//head"
     search_results = root_node.search(xpath)
 
     assert_equal 1, search_results.length
   end
 
+  def test_not_case_sensitive
+    content = "<html> <head><title>Foo</title></head> <body><h1>Heading</h1></body> </html>"
+    root_node = Nekohtml.parse(content)
+    xpath = "//h1"
+    search_result = root_node.at(xpath)
+    assert_not_nil search_result, "Nothing found with the xpath #{xpath}."
+    assert_equal "Heading", search_result.text
+  end
 
 end
