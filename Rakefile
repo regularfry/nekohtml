@@ -43,6 +43,7 @@ end
 
 task :test => :check_dependencies
 
+task :gem => :build
 task :default => :test
 
 begin
