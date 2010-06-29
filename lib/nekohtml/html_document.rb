@@ -24,15 +24,13 @@ module Nekohtml
     end
 
     def search(xpath)
-      @jxpath_settings = javax.xml.xpath.XPathConstants::NODESET
-      jnode_list = self.do_search(xpath, @jxpath_settings)
+      jnode_list = self.do_search(xpath, javax.xml.xpath.XPathConstants::NODESET)
 
       result = jnode_list ? HtmlNodeList.new(jnode_list) : nil
     end
 
     def at(xpath)
-      @jxpath_settings = javax.xml.xpath.XPathConstants::NODE
-      jnode = self.do_search(xpath, @jxpath_settings)
+      jnode = self.do_search(xpath, javax.xml.xpath.XPathConstants::NODE)
 
       result = jnode ? HtmlNode.new(jnode) : nil
     end
@@ -73,6 +71,47 @@ module Nekohtml
     def value
       return self.text
     end
+
+    def absolute_xpath
+      current_jnode = @jelement
+      document = current_jnode.owner_document
+
+      s = ''
+      while current_jnode != document
+        t = current_jnode.tag_name
+
+        parent_jnode = current_jnode.parent_node
+        current_sib = parent_jnode.get_first_child
+        relevant_count = 0
+        current_jnode_index = 0
+
+        while current_sib 
+          if current_sib == current_jnode
+            current_jnode_index = relevant_count
+            break
+          end
+          
+          if current_sib.tag_name == current_jnode.tag_name
+            relevant_count += 1
+          end
+          current_sib = current_sib.get_next_sibling
+        end
+
+        istr = ''
+        if relevant_count > 0
+          if current_jnode_index > 0
+            istr = "[#{current_jnode_index+1}]"
+          end
+        end
+
+        s = '/' + current_jnode.tag_name + istr + s
+        current_jnode = current_jnode.parent_node
+      end
+      
+      return '/' + s
+
+    end
+
   end
 
 end

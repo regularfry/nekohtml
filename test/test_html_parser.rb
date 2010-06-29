@@ -59,6 +59,7 @@ class TestNekohtml < Test::Unit::TestCase
     assert_equal 1, search_results.length
   end
 
+
   def test_not_case_sensitive
     content = "<html> <head><title>Foo</title></head> <body><h1>Heading</h1></body> </html>"
     root_node = Nekohtml.parse(content)
@@ -68,4 +69,20 @@ class TestNekohtml < Test::Unit::TestCase
     assert_equal "Heading", search_result.text
   end
 
+
+  def test_absolute_xpath
+    content = "<html><body><a>foo</a></body></html>"
+    root_node = Nekohtml.parse(content)
+    found_node = root_node.at("//a")
+    assert_equal "//html/body/a", found_node.absolute_xpath
+  end
+
+
+  def test_absolute_xpath_with_extras
+    content = "<html><body><a>foo</a><a><b>bar</b></a></body></html>"
+    root_node = Nekohtml.parse(content)
+    found_node = root_node.at("//b")
+    assert_equal "//html/body/a[2]/b", found_node.absolute_xpath
+    assert_equal found_node.java_object, root_node.at(found_node.absolute_xpath).java_object
+  end
 end
